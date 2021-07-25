@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Foundation
+import CryptoKit
 
 struct UserCard: View {
     
@@ -17,14 +19,17 @@ struct UserCard: View {
         ZStack {
             HStack {
                 NavigationLink(destination: UserDetailView(user: user)) {
-                    Image(systemName: "person")
-                        .font(.system(size: 30))
-                        .padding()
-                    Text(user.username)
+                    Image(uiImage: getUrl(user: user).loadImage())
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(width: 70, height: 70, alignment: .leading)
                         .padding(.leading, -15)
+                    Text(user.username)
+                        .padding(.leading, 15)
                         .frame(alignment: .leading)
                         .foregroundColor(.white)
-                        .font(.system(size: 20, weight: .medium, design: .rounded))
+                        .font(.system(size: 18, weight: .medium, design: .rounded))
                 }
                 Spacer()
             }.padding(.leading, 20)

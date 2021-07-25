@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension String {
-    func load() -> UIImage {
+    func loadImage() -> UIImage {
         
         do {
             guard let url = URL(string: self) else {
@@ -50,13 +50,6 @@ struct title3Text: ViewModifier {
     }
 }
 
-
-extension Image {
-    func data(url: URL) -> Self {
-        if let data = try? Data(contentsOf: url) {
-            return Image(uiImage: UIImage(data: data)!)
-                .resizable()
-        }
-        return self.resizable()
-    }
+func getUrl(user: User) -> String {
+    return "https://i.pravatar.cc/150?u=\(user.email)"
 }

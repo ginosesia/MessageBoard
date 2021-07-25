@@ -30,9 +30,12 @@ struct UserDetailView: View {
                                 }
                             }
                             Spacer()
-                            Image(systemName: "person")
-                                .font(.system(size: 70))
-                                .padding()
+                            Image(uiImage: getUrl(user: user).loadImage())
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 100, height: 100, alignment: .leading)
+                                .padding(.leading, -15)
                         }
                         Group {
                             Text("Address").modifier(titleText())
@@ -91,9 +94,3 @@ struct UserDetailView: View {
         .navigationTitle(Text(user.username))
     }
 }
-
-//struct UserDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserDetailView()
-//    }
-//}
